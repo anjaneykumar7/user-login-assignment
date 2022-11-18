@@ -103,87 +103,77 @@ class _HomeState extends State<Home> {
     return showDialog(
         context: conx,
         builder: (BuildContext context) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Padding(
-                 padding: const EdgeInsets.symmetric(vertical: 120,horizontal: 50.0),
-                  child: Container(
-                    color: Colors.white,
-                    height: 300,
-                    width: double.infinity,
-                    child: ListView(
-                      children: [
-                        Material(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              controller: age,
-                              decoration: const InputDecoration(
-                                  label: Text("Age"),
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.black, width: 2))),
-                            ),
-                          ),
-                        ),
-                        Material(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: TextField(
-                              keyboardType: TextInputType.name,
-                              controller: gender,
-                              decoration: const InputDecoration(
-                                  label: Text("Gender"),
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.black, width: 2))),
-                            ),
-                          ),
-                        ),
-                        Material(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: ElevatedButton(
-                              child: const Text("Save"),
-                              onPressed: () async {
-                                String n = users.elementAt(index).name;
-                                String a = age.text;
-                                String g = gender.text;
-
-                                if (a.isNotEmpty && g.isNotEmpty) {
-                                  Map usr = {
-                                    "name": n,
-                                    "age": a,
-                                    "gender": g,
-                                  };
-                                  await mybox!.put(n, usr);
-                                  await mybox!.put("login", usr);
-                                  age.text = '';
-                                  gender.text = '';
-                                  Navigator.pop(conx);
-                                  Route route = MaterialPageRoute(
-                                      builder: (_) => const Info());
-
-                                  Navigator.push(conx, route);
-                                } else {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                    content: Text("Please fill textfield"),
-                                  ));
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
+          return Center(
+            child: SizedBox(
+              height: 400,
+              child: ListView(
+                children: [
+                  Material(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: age,
+                        decoration: const InputDecoration(
+                            label: Text("Age"),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 2))),
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
+                  Material(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextField(
+                        keyboardType: TextInputType.name,
+                        controller: gender,
+                        decoration: const InputDecoration(
+                            label: Text("Gender"),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 2))),
+                      ),
+                    ),
+                  ),
+                  Material(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: ElevatedButton(
+                        child: const Text("Save"),
+                        onPressed: () async {
+                          String n = users.elementAt(index).name;
+                          String a = age.text;
+                          String g = gender.text;
+
+                          if (a.isNotEmpty && g.isNotEmpty) {
+                            Map usr = {
+                              "name": n,
+                              "age": a,
+                              "gender": g,
+                            };
+                            await mybox!.put(n, usr);
+                            await mybox!.put("login", usr);
+                            age.text = '';
+                            gender.text = '';
+                            Navigator.pop(conx);
+                            Route route =
+                                MaterialPageRoute(builder: (_) => const Info());
+
+                            Navigator.push(conx, route);
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Please fill textfield"),
+                            ));
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           );
         });
   }
