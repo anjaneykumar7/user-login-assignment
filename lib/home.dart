@@ -108,10 +108,10 @@ class _HomeState extends State<Home> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(50.0),
+                 padding: const EdgeInsets.symmetric(vertical: 120,horizontal: 50.0),
                   child: Container(
                     color: Colors.white,
-                    height: 400,
+                    height: 300,
                     width: double.infinity,
                     child: ListView(
                       children: [
